@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trade</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="modal-background">
+      <div class="modal-window">
+          <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
+            <input type="hidden" name="receiver" value="41001xxxxxxxxxxxx">
+            <input type="hidden" name="formcomment" value="Sample text">
+            <input type="hidden" name="label" value="$order_id">
+            <input type="hidden" name="quickpay-form" value="donate">
+            <input type="hidden" name="targets" value="транзакция {order_id}">
+            <input type="text" name="sum" value="200" data-type="number">
+            <label><input type="radio" name="paymentType" value="PC" checked>Яндекс.Деньгами</label>
+            <label><input type="radio" name="paymentType" value="AC">Банковской картой</label>
+            <input type="submit" value="Перевести" class="button">
+          </form>
+      </div>
+    </div>
+    <header class="logged-in">
+      <div class="user">
+        <img src="">
+        <p>Имя пользователя</p>
+      </div>
+      <div class="balance">
+        <b>Ваш баланс: <span id="balance">0</span> руб</b>
+        <p>Пополнить баланс</p>
+      </div>
+      <div class="button" id="login">Войти через VK</div>
+    </header>
+    <main>
+      <div>
+        <div class="card">
+          <div class="card-heading">
+            <b>ВАШЕ ПРЕДЛОЖЕНИЕ</b>
+            <p><span id="my-quantity">0</span> предметов - <span id="my-price">0</span> руб</p>
+          </div>
+          <div class="card-items empty">
+            <p>Выберите из Вашего инвентаря предметы, которые хотите обменять</p>
+            <ul id="my-offer">
+            </ul>
+          </div>
+        </div>
+        <div class="center">
+          <div class="distinction">
+            <b><span id="balance-sign">+</span> <span id="balance-difference">0</span></b> руб
+          </div>
+          <form action="" method="POST">
+            <input type="hidden" name="my-offer" value="">
+            <input type="hidden" name="server-offer" value="">
+            <button class="submit button" disabled>
+              Обмен
+            </button>
+          </form>
+        </div>
+        <div class="card">
+          <div class="card-heading">
+            <b>ВЫ ПОЛУЧИТЕ</b>
+            <p><span id="server-quantity">0</span> предметов - <span id="server-price">0</span> руб</p>
+          </div>
+          <div class="card-items empty">
+            <p>Выберите из инвентаря сайта предметы, которые хотите получить</p>
+            <ul id="server-offer">
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-heading">
+            <b>ВАШ ИНВЕНТАРЬ</b>
+          </div>
+          <div class="card-items">
+            <ul id="my-inv">
+              <li class="inv-item" data-id="001" data-price="225">
+                <img src="">
+                <p><span>225</span> руб</p>
+                <div class="controls">
+                  <div class="button">+</div>
+                  <input type="text" value="1" min="1" disabled>
+                  <div class="button">-</div>
+                </div>
+              </li>
+              <li class="inv-item" data-id="002" data-price="380">
+                <img src="">
+                <p><span>380</span> руб</p>
+                <div class="controls">
+                  <div class="button">+</div>
+                  <input type="text" value="1" min="1" disabled>
+                  <div class="button">-</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-heading">
+            <b>ИНВЕНТАРЬ САЙТА</b> 
+          </div>
+          <div class="card-items">
+            <ul id="server-inv">
+              <li class="inv-item" data-id="001" data-price="225">
+                <img src="">
+                <span class="how-much-left">5</span>
+                <p><span>225</span> руб</p>
+                <div class="controls">
+                  <div class="button">+</div>
+                  <input type="text" value="1" min="1" disabled>
+                  <div class="button">-</div>
+                </div>
+              </li>
+              <li class="inv-item" data-id="011" data-price="225">
+                <img src="">
+                <span class="how-much-left">2</span>
+                <p><span>225</span> руб</p>
+                <div class="controls">
+                  <div class="button">+</div>
+                  <input type="text" value="1" min="1" disabled>
+                  <div class="button">-</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      Trade
+    </footer>
+    <script>
+      function addServerItem(id, price, img) {
+        let elem = document.createElement('div');
+        elem.classList.add('inv-item');
+        elem.dataset.id = id;
+        elem.dataset.price = price;
+
+        let imgElem = document.createElement('img');
+        imgElem.src = img;
+
+        let priceElem = document.createElement('p');
+        let priceSpan = document.createElement('span');
+        priceSpan.innerText = price;
+        priceElem.appendChild(priceSpan);
+        priceElem.innerText += ' руб';
+
+        let inputElem = document.createElement('input');
+        inputElem.type = 'number';
+        inputElem.value = 1;
+        inputElem.min = 1;
+
+        elem.appendChild(imgElem);
+        elem.appendChild(priceElem);
+        elem.appendChild(inputElem);
+
+        document.getElementById('server-inv').appendChild(elem);
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
