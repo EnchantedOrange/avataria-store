@@ -22,7 +22,7 @@
           </form>
       </div>
     </div>
-    <header class="logged-in">
+    <header>
       <div class="user">
         <img src="">
         <p>Имя пользователя</p>
@@ -79,20 +79,11 @@
             <ul id="my-inv">
               <li class="inv-item" data-id="001" data-price="225">
                 <img src="">
-                <p><span>225</span> руб</p>
+                <p class="price"><span>225</span> руб</p>
                 <div class="controls">
-                  <div class="button">+</div>
-                  <input type="text" value="1" min="1" disabled>
                   <div class="button">-</div>
-                </div>
-              </li>
-              <li class="inv-item" data-id="002" data-price="380">
-                <img src="">
-                <p><span>380</span> руб</p>
-                <div class="controls">
+                  <input type="text" value="1" min="1" readonly>
                   <div class="button">+</div>
-                  <input type="text" value="1" min="1" disabled>
-                  <div class="button">-</div>
                 </div>
               </li>
             </ul>
@@ -104,24 +95,24 @@
           </div>
           <div class="card-items">
             <ul id="server-inv">
+                <li class="inv-item" data-id="001" data-price="225">
+                <img src="">
+                <span class="how-much-left">0</span>
+                <p class="price"><span>225</span> руб</p>
+                <div class="controls">
+                  <div class="button">-</div>
+                  <input type="text" value="1" min="1" readonly>
+                  <div class="button">+</div>
+                </div>
+              </li>
               <li class="inv-item" data-id="001" data-price="225">
                 <img src="">
                 <span class="how-much-left">5</span>
-                <p><span>225</span> руб</p>
+                <p class="price"><span>225</span> руб</p>
                 <div class="controls">
-                  <div class="button">+</div>
-                  <input type="text" value="1" min="1" disabled>
                   <div class="button">-</div>
-                </div>
-              </li>
-              <li class="inv-item" data-id="011" data-price="225">
-                <img src="">
-                <span class="how-much-left">2</span>
-                <p><span>225</span> руб</p>
-                <div class="controls">
+                  <input type="text" value="1" min="1" readonly>
                   <div class="button">+</div>
-                  <input type="text" value="1" min="1" disabled>
-                  <div class="button">-</div>
                 </div>
               </li>
             </ul>
@@ -130,11 +121,11 @@
       </div>
     </main>
     <footer>
-      Trade
+      Avataria store
     </footer>
     <script>
-      function addServerItem(id, price, img) {
-        let elem = document.createElement('div');
+      function addServerItem(id, price, img, left) {
+        let elem = document.createElement('li');
         elem.classList.add('inv-item');
         elem.dataset.id = id;
         elem.dataset.price = price;
@@ -142,20 +133,38 @@
         let imgElem = document.createElement('img');
         imgElem.src = img;
 
+        let howMuchLeft = document.createElement('span');
+        howMuchLeft.classList.add('how-much-left');
+        howMuchLeft.innerText = left;
+
         let priceElem = document.createElement('p');
+        priceElem.classList.add('price');
         let priceSpan = document.createElement('span');
         priceSpan.innerText = price;
         priceElem.appendChild(priceSpan);
         priceElem.innerText += ' руб';
 
-        let inputElem = document.createElement('input');
-        inputElem.type = 'number';
-        inputElem.value = 1;
-        inputElem.min = 1;
+        let controls = document.createElement('div');
+        controls.classList.add('controls');
+        let minusButton = document.createElement('div');
+        minusButton.classList.add('button');
+        minusButton.innerText = '-';
+        let quantity = document.createElement('input');
+        quantity.type = 'text';
+        quantity.value = 1;
+        quantity.min = 1;
+        quantity.readOnly = true;
+        let plusButton = document.createElement('div');
+        plusButton.classList.add('button');
+        plusButton.innerText = '+';
+        controls.appendChild(minusButton);
+        controls.appendChild(quantity);
+        controls.appendChild(plusButton);
 
         elem.appendChild(imgElem);
+        elem.appendChild(howMuchLeft);
         elem.appendChild(priceElem);
-        elem.appendChild(inputElem);
+        elem.appendChild(controls);
 
         document.getElementById('server-inv').appendChild(elem);
       }

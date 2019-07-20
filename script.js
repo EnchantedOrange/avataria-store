@@ -6,10 +6,16 @@ const serverOffer = document.getElementById('server-offer');
 const modal = document.getElementsByClassName('modal-background')[0];
 
 Array.from(document.getElementsByClassName('inv-item')).forEach(elem => {
+  if (elem.parentNode.id === 'server-inv' && elem.getElementsByClassName('how-much-left')[0].innerText === '0') {
+    elem.getElementsByClassName('controls')[0].getElementsByTagName('input')[0].value = 0;
+    return;
+  }
+
   elem.addEventListener('click', itemListener);
 
   const quantityCounter = elem.getElementsByTagName('input')[0];
-  elem.getElementsByTagName('div')[0].getElementsByTagName('div')[0].addEventListener('click', event => {
+
+  elem.getElementsByTagName('div')[0].getElementsByTagName('div')[1].addEventListener('click', event => {
     if (elem.parentElement.id === 'server-inv') {
       if (quantityCounter.value < elem.getElementsByClassName('how-much-left')[0].innerText) {
         quantityCounter.value = +quantityCounter.value + 1;
@@ -18,7 +24,7 @@ Array.from(document.getElementsByClassName('inv-item')).forEach(elem => {
       quantityCounter.value = +quantityCounter.value + 1;
     }
   });
-  elem.getElementsByTagName('div')[0].getElementsByTagName('div')[1].addEventListener('click', event => {
+  elem.getElementsByTagName('div')[0].getElementsByTagName('div')[0].addEventListener('click', event => {
     if (quantityCounter.value > 1) {
       quantityCounter.value -= 1;
     }
@@ -85,7 +91,7 @@ function itemListener() {
     if (event.target.parentNode.classList.contains('controls')) {
       return;
     }
-    
+
     for (const offer of serverOffer.children) {
       if (offer.dataset.id === event.currentTarget.dataset.id) {
         serverOffer.removeChild(offer);
