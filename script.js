@@ -46,10 +46,10 @@ btn.addEventListener('click', function() {
     serverOfferlist += `${item.dataset.id}, ${item.dataset.price}, ${item.dataset.quantity};`;
   });
 
-  document.forms[0].getElementsByTagName('input')[0].value = myOfferlist;
-  document.forms[0].getElementsByTagName('input')[1].value = serverOfferlist;
+  document.forms[1].getElementsByTagName('input')[0].value = myOfferlist;
+  document.forms[1].getElementsByTagName('input')[1].value = serverOfferlist;
 
-  document.forms[0].submit();
+  document.forms[1].submit();
 });
 
 document.getElementsByClassName('balance')[0].addEventListener('click', () => {
