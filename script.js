@@ -8,6 +8,7 @@ const modal = document.getElementsByClassName('modal-background')[0];
 Array.from(document.getElementsByClassName('inv-item')).forEach(elem => {
   if (elem.parentNode.id === 'server-inv' && elem.getElementsByClassName('how-much-left')[0].innerText === '0') {
     elem.getElementsByClassName('controls')[0].getElementsByTagName('input')[0].value = 0;
+    elem.classList.add('inactive');
     return;
   }
 

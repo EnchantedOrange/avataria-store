@@ -19,7 +19,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: linear-gradient(#108f69, #0c5c44);
+  background-color:#108f69;
   font-size: 1.3rem;
   font-weight: bold;
   padding: 0 4rem;
@@ -96,7 +96,7 @@ header {
 
   width: 100%;
   height: var(--header-height);
-  background-image: linear-gradient(#9e1941, #861336);
+  background-color:#91173b;
   box-shadow: 0 3px 10px -2px rgba(0, 0, 0, .5);
   display: flex;
   justify-content: flex-end;
@@ -232,6 +232,11 @@ main {
           position: relative;
           user-select: none;
 
+          &.inactive {
+            filter: grayscale(1);
+            opacity: .6;
+          }
+
           img {
             max-width: 100%;
             max-height: 100%;
@@ -324,8 +329,9 @@ main {
       width: 100%;
 
       &.inactive {
-        cursor: not-allowed;
+        cursor: default;
         opacity: .6;
+        filter: grayscale(1);
       }
     }
   }
