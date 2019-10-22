@@ -18,7 +18,7 @@ Array.from(document.getElementsByClassName('inv-item')).forEach(elem => {
 
   elem.getElementsByTagName('div')[0].getElementsByTagName('div')[1].addEventListener('click', event => {
     if (elem.parentElement.id === 'server-inv') {
-      if (quantityCounter.value < elem.getElementsByClassName('how-much-left')[0].innerText) {
+      if (+quantityCounter.value < +elem.getElementsByClassName('how-much-left')[0].innerText) {
         quantityCounter.value = +quantityCounter.value + 1;
       }
     } else {
@@ -63,21 +63,43 @@ modal.addEventListener('click', event => {
   }
 });
 
+(function checkServerInventoryEmptiness() {
+  const items = Array.from(document.getElementById('server-inv').children);
+  let inactiveCount = 0;
+
+  items.forEach(e => {
+    e.classList.contains('inactive') && inactiveCount++;
+  });
+
+  if (items.length === inactiveCount) {
+    Array.from(document.getElementById('my-inv').children).forEach(e => {
+      e.classList.add('inactive');
+      e.removeEventListener('click', itemListener);
+    });
+  }
+})();
+
 function itemListener() {
   const parent = event.currentTarget.parentNode;
-  if (parent.id === 'my-inv') {
+  const thisOffer = parent.id === 'my-inv' ? myOffer : serverOffer;
+  const thisId = parent.id === 'my-inv' ? 'my-offer' : 'server-offer';
+
+  if (parent.id === 'my-inv' || parent.id === 'server-inv') {
     if (event.target.parentNode.classList.contains('controls')) {
       return;
     }
 
-    for (const offer of myOffer.children) {
+    for (const offer of thisOffer.children) {
       if (offer.dataset.id === event.currentTarget.dataset.id) {
-        myOffer.removeChild(offer);
+        thisOffer.removeChild(offer);
       }
     }
-  
+
     let item = event.currentTarget.cloneNode(true);
     let quantity = item.getElementsByTagName('input')[0].value;
+
+    parent.id === 'server-inv' &&
+      item.removeChild(item.getElementsByClassName('how-much-left')[0]);
     item.removeChild(item.getElementsByTagName('div')[0]);
     let num = document.createElement('span');
     num.classList.add('quantity');
@@ -85,34 +107,11 @@ function itemListener() {
     item.dataset.quantity = quantity;
     item.appendChild(num);
     item.addEventListener('click', itemListener);
-    myOffer.appendChild(item);
-    checkOfferEmptiness('my-offer');
-    calculatePriceAndQuantity('my-offer');
-  } else if (parent.id === 'server-inv') {
-    if (event.target.parentNode.classList.contains('controls')) {
-      return;
-    }
-
-    for (const offer of serverOffer.children) {
-      if (offer.dataset.id === event.currentTarget.dataset.id) {
-        serverOffer.removeChild(offer);
-      }
-    }
-
-    let item = event.currentTarget.cloneNode(true);
-    let quantity = item.getElementsByTagName('input')[0].value;
-    item.removeChild(item.getElementsByClassName('how-much-left')[0]);
-    item.removeChild(item.getElementsByTagName('div')[0]);
-    let num = document.createElement('span');
-    num.classList.add('quantity');
-    num.innerText = quantity;
-    item.dataset.quantity = quantity;
-    item.appendChild(num);
-    item.addEventListener('click', itemListener);
-    serverOffer.appendChild(item);
-    checkOfferEmptiness('server-offer');
-    calculatePriceAndQuantity('server-offer');
-  } else if (parent.id === 'my-offer' || parent.id === 'server-offer') {
+    thisOffer.appendChild(item);
+    checkOfferEmptiness(thisId);
+    calculatePriceAndQuantity(thisId);
+  }
+   else if (parent.id === 'my-offer' || parent.id === 'server-offer') {
     parent.removeChild(event.currentTarget);
     checkOfferEmptiness(parent.id);
     calculatePriceAndQuantity(parent.id);
