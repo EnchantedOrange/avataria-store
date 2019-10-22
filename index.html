@@ -38,11 +38,11 @@
         <div class="card">
           <div class="card-heading">
             <b>ВАШЕ ПРЕДЛОЖЕНИЕ</b>
-            <p><span id="my-quantity">0</span> предметов - <span id="my-price">0</span> руб</p>
+            <p><span id="user-quantity">0</span> предметов - <span id="user-price">0</span> руб</p>
           </div>
           <div class="card-items empty">
             <p>Выберите из Вашего инвентаря предметы, которые хотите обменять</p>
-            <ul id="my-offer">
+            <ul id="user-offer">
             </ul>
           </div>
         </div>
@@ -51,7 +51,7 @@
             <b><span id="balance-sign">+</span> <span id="balance-difference">0</span></b> руб
           </div>
           <form action="./send" method="POST">
-            <input type="hidden" name="my-offer" value="">
+            <input type="hidden" name="user-offer" value="">
             <input type="hidden" name="server-offer" value="">
             <button class="submit button" disabled>
               Обмен
@@ -76,7 +76,7 @@
             <b>ВАШ ИНВЕНТАРЬ</b>
           </div>
           <div class="card-items">
-            <ul id="my-inv">
+            <ul id="user-inv">
               <li class="inv-item" data-id="001" data-price="225">
                 <img src="">
                 <p class="price"><span>225</span> руб</p>

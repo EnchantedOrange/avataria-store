@@ -1,7 +1,7 @@
 let mySum = 0, serverSum = 0;
 
 const btn = document.getElementsByClassName('submit')[0];
-const myOffer = document.getElementById('my-offer');
+const myOffer = document.getElementById('user-offer');
 const serverOffer = document.getElementById('server-offer');
 const modal = document.getElementsByClassName('modal-background')[0];
 
@@ -72,7 +72,7 @@ modal.addEventListener('click', event => {
   });
 
   if (items.length === inactiveCount) {
-    Array.from(document.getElementById('my-inv').children).forEach(e => {
+    Array.from(document.getElementById('user-inv').children).forEach(e => {
       e.classList.add('inactive');
       e.removeEventListener('click', itemListener);
     });
@@ -81,10 +81,10 @@ modal.addEventListener('click', event => {
 
 function itemListener() {
   const parent = event.currentTarget.parentNode;
-  const thisOffer = parent.id === 'my-inv' ? myOffer : serverOffer;
-  const thisId = parent.id === 'my-inv' ? 'my-offer' : 'server-offer';
+  const thisOffer = parent.id === 'user-inv' ? myOffer : serverOffer;
+  const thisId = parent.id === 'user-inv' ? 'user-offer' : 'server-offer';
 
-  if (parent.id === 'my-inv' || parent.id === 'server-inv') {
+  if (parent.id === 'user-inv' || parent.id === 'server-inv') {
     if (event.target.parentNode.classList.contains('controls')) {
       return;
     }
@@ -111,7 +111,7 @@ function itemListener() {
     checkOfferEmptiness(thisId);
     calculatePriceAndQuantity(thisId);
   }
-   else if (parent.id === 'my-offer' || parent.id === 'server-offer') {
+   else if (parent.id === 'user-offer' || parent.id === 'server-offer') {
     parent.removeChild(event.currentTarget);
     checkOfferEmptiness(parent.id);
     calculatePriceAndQuantity(parent.id);
@@ -149,9 +149,9 @@ function calculatePriceAndQuantity(id) {
   }
 
   switch (id) {
-    case 'my-offer':
-      document.getElementById('my-price').innerText = sum;
-      document.getElementById('my-quantity').innerText = quantity;
+    case 'user-offer':
+      document.getElementById('user-price').innerText = sum;
+      document.getElementById('user-quantity').innerText = quantity;
       mySum = sum;
       break;
 
