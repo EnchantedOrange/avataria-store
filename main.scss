@@ -101,6 +101,7 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-bottom: 2rem;
 
   .user {
     display: none;
@@ -170,6 +171,47 @@ header {
     .button {
       display: none;
     }
+  }
+}
+
+.notification {
+  border-radius: 4px;
+  padding: 15px;
+  padding-right: 25px;
+  width: fit-content;
+  max-width: 50%;
+  margin: 1rem auto;
+  position: relative;
+
+  button {
+    appearance: none;
+    border: none;
+    padding: 6px;
+    background-color: transparent;
+    color: #000;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+
+  &.green {
+    border: 1px solid rgba(75, 236, 88, .7);
+    background-color: rgba(75, 236, 88, .5);
+    color: darken(rgb(75, 236, 88), 25);
+  }
+
+  &.yellow {
+    border: 1px solid rgba(212, 236, 75, .7);
+    background-color: rgba(212, 236, 75, .5);
+    color: darken(rgb(212, 236, 75), 25);
+  }
+
+  &.red {
+    border: 1px solid rgba(236, 86, 75, .7);
+    background-color: rgba(236, 86, 75, .5);
+    color: darken(rgb(236, 86, 75), 25);
   }
 }
 
@@ -365,6 +407,11 @@ footer {
     font-size: .9rem;
     padding: 0 .5rem;
     margin-left: .5rem;
+  }
+
+  .notification {
+    max-width: none;
+    margin: 1rem 2rem;
   }
 
   main > div {

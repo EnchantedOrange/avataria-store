@@ -33,6 +33,8 @@
       </div>
       <div class="button" id="login">Войти через VK</div>
     </header>
+    <div id="notification-container">
+    </div>
     <main>
       <div>
         <div class="card">
@@ -133,6 +135,7 @@
     <footer>
       Avataria store
     </footer>
+    <script src="script.js"></script>
     <script>
       function addServerItem(id, price, img, left) {
         let elem = document.createElement('li');
@@ -179,6 +182,21 @@
         document.getElementById('server-inv').appendChild(elem);
       }
     </script>
-    <script src="script.js"></script>
+    <script>
+      const notificationContainer = document.getElementById('notification-container');
+      
+      function createNotification(text, color) {
+        let notif = document.createElement('div');
+        notif.classList.add('notification', color);
+        notif.innerText = text;
+        let closeButton = document.createElement('button');
+        closeButton.innerText = '\u2573';
+        notif.appendChild(closeButton);
+        closeButton.addEventListener('click', e => {
+          notificationContainer.removeChild(e.target.parentElement);
+        });
+        notificationContainer.appendChild(notif);
+      }
+    </script>
   </body>
 </html>
