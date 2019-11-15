@@ -1,12 +1,9 @@
-let mySum = 0, serverSum = 0;
-
 const btn = document.getElementsByClassName('submit')[0];
-const myOffer = document.getElementById('user-offer');
 const serverOffer = document.getElementById('server-offer');
 const modal = document.getElementsByClassName('modal-background')[0];
 
 Array.from(document.getElementsByClassName('inv-item')).forEach(elem => {
-  if (elem.parentNode.id === 'server-inv' && elem.getElementsByClassName('how-much-left')[0].innerText === '0') {
+  if (elem.getElementsByClassName('how-much-left')[0].innerText === '0') {
     elem.getElementsByClassName('controls')[0].getElementsByTagName('input')[0].value = 0;
     elem.classList.add('inactive');
     return;
@@ -17,11 +14,7 @@ Array.from(document.getElementsByClassName('inv-item')).forEach(elem => {
   const quantityCounter = elem.getElementsByTagName('input')[0];
 
   elem.getElementsByTagName('div')[0].getElementsByTagName('div')[1].addEventListener('click', event => {
-    if (elem.parentElement.id === 'server-inv') {
-      if (+quantityCounter.value < +elem.getElementsByClassName('how-much-left')[0].innerText) {
-        quantityCounter.value = +quantityCounter.value + 1;
-      }
-    } else {
+    if (+quantityCounter.value < +elem.getElementsByClassName('how-much-left')[0].innerText) {
       quantityCounter.value = +quantityCounter.value + 1;
     }
   });
@@ -37,18 +30,13 @@ checkOfferEmptiness();
 btn.addEventListener('click', function() {
   event.preventDefault();
 
-  let myOfferlist = '';
   let serverOfferlist = '';
-  Array.from(myOffer.children).forEach(item => {
-    myOfferlist += `${item.dataset.id}, ${item.dataset.price}, ${item.dataset.quantity};`;
-  });
 
   Array.from(serverOffer.children).forEach(item => {
     serverOfferlist += `${item.dataset.id}, ${item.dataset.price}, ${item.dataset.quantity};`;
   });
 
-  document.forms[1].getElementsByTagName('input')[0].value = myOfferlist;
-  document.forms[1].getElementsByTagName('input')[1].value = serverOfferlist;
+  document.forms[1].getElementsByTagName('input')[0].value = serverOfferlist;
 
   document.forms[1].submit();
 });
@@ -63,43 +51,24 @@ modal.addEventListener('click', event => {
   }
 });
 
-(function checkServerInventoryEmptiness() {
-  const items = Array.from(document.getElementById('server-inv').children);
-  let inactiveCount = 0;
-
-  items.forEach(e => {
-    e.classList.contains('inactive') && inactiveCount++;
-  });
-
-  if (items.length === inactiveCount) {
-    Array.from(document.getElementById('user-inv').children).forEach(e => {
-      e.classList.add('inactive');
-      e.removeEventListener('click', itemListener);
-    });
-  }
-})();
-
 function itemListener() {
   const parent = event.currentTarget.parentNode;
-  const thisOffer = parent.id === 'user-inv' ? myOffer : serverOffer;
-  const thisId = parent.id === 'user-inv' ? 'user-offer' : 'server-offer';
 
-  if (parent.id === 'user-inv' || parent.id === 'server-inv') {
+  if (parent.id === 'server-inv') {
     if (event.target.parentNode.classList.contains('controls')) {
       return;
     }
 
-    for (const offer of thisOffer.children) {
+    for (const offer of serverOffer.children) {
       if (offer.dataset.id === event.currentTarget.dataset.id) {
-        thisOffer.removeChild(offer);
+        serverOffer.removeChild(offer);
       }
     }
 
     let item = event.currentTarget.cloneNode(true);
     let quantity = item.getElementsByTagName('input')[0].value;
 
-    parent.id === 'server-inv' &&
-      item.removeChild(item.getElementsByClassName('how-much-left')[0]);
+    item.removeChild(item.getElementsByClassName('how-much-left')[0]);
     item.removeChild(item.getElementsByTagName('div')[0]);
     let num = document.createElement('span');
     num.classList.add('quantity');
@@ -107,11 +76,11 @@ function itemListener() {
     item.dataset.quantity = quantity;
     item.appendChild(num);
     item.addEventListener('click', itemListener);
-    thisOffer.appendChild(item);
-    checkOfferEmptiness(thisId);
-    calculatePriceAndQuantity(thisId);
+    serverOffer.appendChild(item);
+    checkOfferEmptiness('server-offer');
+    calculatePriceAndQuantity('server-offer');
   }
-   else if (parent.id === 'user-offer' || parent.id === 'server-offer') {
+   else if (parent.id === 'server-offer') {
     parent.removeChild(event.currentTarget);
     checkOfferEmptiness(parent.id);
     calculatePriceAndQuantity(parent.id);
@@ -129,7 +98,7 @@ function checkOfferEmptiness(id) {
     }
   }
 
-  if (myOffer.children.length === 0 && serverOffer.children.length === 0) {
+  if (serverOffer.children.length === 0) {
     btn.classList.add('inactive');
     btn.disabled = true;
   } else {
@@ -148,28 +117,8 @@ function calculatePriceAndQuantity(id) {
     quantity += +item.dataset.quantity;
   }
 
-  switch (id) {
-    case 'user-offer':
-      document.getElementById('user-price').innerText = sum;
-      document.getElementById('user-quantity').innerText = quantity;
-      mySum = sum;
-      break;
+  document.getElementById('server-price').innerText = sum;
+  document.getElementById('server-quantity').innerText = quantity;
 
-    case 'server-offer':
-      document.getElementById('server-price').innerText = sum;
-      document.getElementById('server-quantity').innerText = quantity;
-      serverSum = sum;
-      break;
-  }
-
-  let difference = mySum - serverSum;
-  let differenceSign;
-  if (difference < 0) {
-    differenceSign = '-';
-    difference = -difference;
-  } else {
-    differenceSign = '+';
-  }
-  document.getElementById('balance-sign').innerText = differenceSign;
-  document.getElementById('balance-difference').innerText = difference;
+  document.getElementById('balance-difference').innerText = sum;
 }

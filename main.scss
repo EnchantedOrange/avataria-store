@@ -102,6 +102,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 2rem;
+  position: relative;
 
   .user {
     display: none;
@@ -117,6 +118,20 @@ header {
 
     p {
       font-size: 1.3rem;
+    }
+  }
+
+  .vk-link {
+    width: 2.5rem;
+    height: 2.5rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    img {
+      width: inherit;
+      height: inherit;
     }
   }
 
@@ -227,23 +242,19 @@ header {
 main {
   padding: 2rem;
 
-  & > div {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-  }
-
   .card {
     background-color: #1e8ec2;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
-    min-width: 41%;
     width: 100%;
-    flex: 0 0 40%;
-    max-width: 45%;
-    margin: 10px 0;
+
+    &:first-child {
+      margin-bottom: 2rem;
+    }
+
+    &:last-child {
+      margin-top: 2rem;
+    }
 
     .card-heading {
       display: flex;
@@ -275,13 +286,14 @@ main {
         overflow-y: auto;
 
         .inv-item {
-          width: 110px;
-          height: 110px;
+          width: 105px;
+          height: 105px;
           border: 2px solid #0a53a7;
           cursor: pointer;
           margin: 5px;
           position: relative;
           user-select: none;
+          box-sizing: border-box;
 
           &.inactive {
             filter: grayscale(1);
@@ -367,11 +379,12 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    min-width: 12%;
 
     .distinction {
       text-align: center;
       color: #000;
+      font-size: 1.5rem;
+      margin: 1rem 0;
     }
 
     .submit {
@@ -412,31 +425,22 @@ footer {
     }
   }
 
-  header .balance {
-    font-size: .9rem;
-    padding: 0 .5rem;
-    margin-left: .5rem;
+  header {
+    .vk-link {
+      position: initial;
+      // height: initial;
+    }
+
+    .balance {
+      font-size: .9rem;
+      padding: 0 .5rem;
+      margin-left: .5rem;
+    }
   }
 
   #notification-container .notification {
     margin: 0;
     box-sizing: inherit;
     min-width: 100%;
-  }
-
-  main > div {
-    .card {
-       min-width: 100%;
-    }
-
-    .center {
-      order: 3;
-      margin: 10px auto;
-      width: 100%;
-
-      .distinction {
-        margin-bottom: 1rem;
-      }
-    }
   }
 }
