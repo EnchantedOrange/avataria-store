@@ -121,20 +121,6 @@ header {
     }
   }
 
-  .vk-link {
-    width: 2.5rem;
-    height: 2.5rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
-
-    img {
-      width: inherit;
-      height: inherit;
-    }
-  }
-
   .balance {
     display: none;
     flex-direction: column;
@@ -242,15 +228,17 @@ header {
 main {
   padding: 2rem;
 
+  & > div {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .card {
     background-color: #1e8ec2;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
-    width: 100%;
-
-    &:first-child {
-      margin-bottom: 2rem;
-    }
+    margin-bottom: 2rem;
 
     &:last-child {
       margin-top: 2rem;
@@ -369,8 +357,12 @@ main {
         text-align: center;
       }
 
-      &.empty > p {
-        display: block;
+      &.empty {
+        padding: 2.5rem;
+
+        p {
+          display: block;
+        }
       }
     }
   }
@@ -379,15 +371,16 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    width: 25%;
 
     .distinction {
       text-align: center;
       color: #000;
       font-size: 1.5rem;
-      margin: 1rem 0;
+      margin-bottom: 1rem;
     }
 
-    .submit {
+    form .submit {
       display: block;
       font-size: 1rem;
       padding: 20px 40px;
@@ -397,6 +390,20 @@ main {
         cursor: default;
         opacity: .6;
         filter: grayscale(1);
+      }
+    }
+
+    .vk-link {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -425,22 +432,25 @@ footer {
     }
   }
 
-  header {
-    .vk-link {
-      position: initial;
-      // height: initial;
-    }
-
-    .balance {
-      font-size: .9rem;
-      padding: 0 .5rem;
-      margin-left: .5rem;
-    }
+  header .balance {
+    font-size: .9rem;
+    padding: 0 .5rem;
+    margin-left: .5rem;
   }
 
   #notification-container .notification {
     margin: 0;
     box-sizing: inherit;
     min-width: 100%;
+  }
+
+  main {
+    & > div {
+      width: initial;
+    }
+
+    .center {
+      width: 50%;
+    }
   }
 }
