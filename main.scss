@@ -381,10 +381,8 @@ main {
     }
 
     form .submit {
-      display: block;
-      font-size: 1rem;
-      padding: 20px 40px;
-      width: 100%;
+      padding: 20px 70px;
+      margin: auto;
 
       &.inactive {
         cursor: default;
@@ -452,5 +450,11 @@ footer {
     .center {
       width: 50%;
     }
+  }
+}
+
+@media all and (max-width: 600px) {
+  main .center {
+    width: 100%;
   }
 }
