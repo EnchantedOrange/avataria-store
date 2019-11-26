@@ -28,7 +28,7 @@
         <p>Имя пользователя</p>
       </div>
       <div class="balance">
-        <b>Ваш баланс: <span id="balance">0</span> руб</b>
+        <b>Ваш баланс: <span id="balance">0</span> ₽</b>
         <p>Пополнить баланс</p>
       </div>
       <div class="button" id="login">Войти через VK</div>
@@ -39,7 +39,7 @@
       <div class="card">
         <div class="card-heading">
           <b>ВЫ ПОЛУЧИТЕ</b>
-          <p><span id="server-quantity">0</span> предметов - <span id="server-price">0</span> руб</p>
+          <p><span id="server-quantity">0</span> предметов - <span id="server-price">0</span> ₽</p>
         </div>
         <div class="card-items empty">
           <p>Выберите из инвентаря сайта предметы, которые хотите получить</p>
@@ -49,7 +49,7 @@
       </div>
       <div class="center">
         <div class="distinction">
-          <strong><span id="balance-difference">0</span></strong> руб
+          <strong><span id="balance-difference">0</span></strong> ₽
         </div>
         <form action="./send" method="POST">
           <input type="hidden" name="server-offer" value="">
@@ -80,7 +80,7 @@
             <li class="inv-item" data-id="001" data-price="225">
               <img src="">
               <span class="how-much-left">0</span>
-              <p class="price"><span>225</span> руб</p>
+              <p class="price"><span>225</span> ₽</p>
               <div class="controls">
                 <div class="button">-</div>
                 <input type="text" value="1" min="1" readonly>
@@ -90,7 +90,7 @@
             <li class="inv-item" data-id="001" data-price="225">
               <img src="">
               <span class="how-much-left">5</span>
-              <p class="price"><span>225</span> руб</p>
+              <p class="price"><span>225</span> ₽</p>
               <div class="controls">
                 <div class="button">-</div>
                 <input type="text" value="1" min="1" readonly>
@@ -124,7 +124,7 @@
         let priceSpan = document.createElement('span');
         priceSpan.innerText = price;
         priceElem.appendChild(priceSpan);
-        priceElem.innerText += ' руб';
+        priceElem.innerText += ' ₽';
 
         let controls = document.createElement('div');
         controls.classList.add('controls');

@@ -8,6 +8,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff;
   font-size: 1rem;
+  height: 100vh;
 }
 
 .hidden {
@@ -281,7 +282,9 @@ main {
           margin: 5px;
           position: relative;
           user-select: none;
+          list-style: none;
           box-sizing: border-box;
+          background-color: rgba(255, 255, 255, .6);
 
           &.inactive {
             filter: grayscale(1);
@@ -307,7 +310,7 @@ main {
             right: 0;
             padding: 2px 4px;
             font-size: .8rem;
-            background-color: rgba(2, 162, 58, .65);
+            background-color: rgba(2, 162, 58, .8);
             text-align: center;
             width: 50%;
           }
@@ -340,7 +343,7 @@ main {
 
   
           .quantity {
-            background-color: rgba(255, 255, 255, .5);
+            background-color: #15a1e2;
             padding: 2px 4px;
             position: absolute;
             top: 0;
