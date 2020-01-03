@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <div class="modal-background">
+    <div id="billing-modal" class="modal-background">
       <div class="modal-window">
           <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
             <input type="hidden" name="receiver" value="41001xxxxxxxxxxxx">
@@ -22,7 +22,20 @@
           </form>
       </div>
     </div>
-    <header>
+    <div id="info-modal" class="modal-background">
+      <div class="modal-window">
+        <div class="info">
+          <h1>Системная информация:</h1>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sequi praesentium officiis explicabo porro! Sed officiis perspiciatis eligendi officia? Tenetur molestiae perferendis eos itaque dolorem omnis natus odit ipsa dolore.
+          </p>
+        </div>
+        <button>
+          Выйти
+        </button>
+      </div>
+    </div>
+    <header class="logged-in">
       <div class="user">
         <img src="">
         <p>Имя пользователя</p>

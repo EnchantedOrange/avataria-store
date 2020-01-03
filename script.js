@@ -1,6 +1,8 @@
 const btn = document.getElementsByClassName('submit')[0];
 const serverOffer = document.getElementById('server-offer');
-const modal = document.getElementsByClassName('modal-background')[0];
+const modals = document.getElementsByClassName('modal-background');
+const billingModal = document.getElementById('billing-modal');
+const infoModal = document.getElementById('info-modal');
 
 Array.from(document.getElementsByClassName('inv-item')).forEach(elem => {
   if (elem.getElementsByClassName('how-much-left')[0].innerText === '0') {
@@ -41,15 +43,27 @@ btn.addEventListener('click', function() {
   document.forms[1].submit();
 });
 
+
+
 document.getElementsByClassName('balance')[0].addEventListener('click', () => {
-  modal.classList.add('visible');
+  billingModal.classList.add('visible');
 });
 
-modal.addEventListener('click', event => {
-  if (event.target === modal) {
-    modal.classList.remove('visible');
-  }
+document.getElementsByClassName('user')[0].addEventListener('click', () => {
+  infoModal.classList.add('visible');
 });
+
+
+
+Array.from(modals).forEach(modal => {
+  modal.addEventListener('click', event => {
+    if (event.target === modal) {
+      modal.classList.remove('visible');
+    }
+  });
+});
+
+
 
 function itemListener() {
   const parent = event.currentTarget.parentNode;

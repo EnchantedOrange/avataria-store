@@ -52,7 +52,7 @@ body {
     background-color: #1e8ec2;
     border-radius: 4px;
     padding: 1rem;
-    max-width: 70%;
+    max-width: 30%;
     font-size: 1.2rem;
     cursor: default;
 
@@ -90,6 +90,42 @@ body {
       }
     }
   }
+
+  &#info-modal {
+
+    h1 {
+      font-size: 1.3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      background-color: #fff;
+      border: 1px solid #000;
+      border-radius: 5px;
+      color: #000;
+      padding: 8px 10px;
+    }
+
+    button {
+      appearance: none;
+      background: none;
+      border: none;
+      margin: auto;
+      display: block;
+      font-size: 1rem;
+      color: #fff;
+      padding: 10px 18px;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: 1px solid #fff;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 header {
@@ -109,6 +145,7 @@ header {
     display: none;
     align-items: center;
     padding-left: 1rem;
+    cursor: pointer;
 
     img {
       border-radius: 50%;
