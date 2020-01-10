@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   position: relative;
   min-height: 100%;
@@ -23,12 +27,18 @@ body {
   background-color:#108f69;
   font-size: 1.3rem;
   font-weight: bold;
-  padding: 0 4rem;
   cursor: pointer;
   height: 100%;
   border-radius: 4px;
   border: 0;
   color: inherit;
+  padding: 1rem 3rem;
+  border: 2px solid #0b7556;
+  transition: filter .1s;
+
+  &:hover {
+    filter: contrast(200%);
+  }
 }
 
 .modal-background {
@@ -60,11 +70,14 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
+      max-width: 30rem;
+      margin: 0 auto;
 
       & > *:not([type="hidden"]) {
         display: block;
         margin: .5rem 0;
         max-width: 100%;
+        width: 100%;
       }
 
       input[type="text"] {
@@ -105,25 +118,11 @@ body {
       border-radius: 5px;
       color: #000;
       padding: 8px 10px;
+      margin-bottom: 1rem;
     }
 
     button {
-      appearance: none;
-      background: none;
-      border: none;
       margin: auto;
-      display: block;
-      font-size: 1rem;
-      color: #fff;
-      padding: 10px 18px;
-      margin-top: 1rem;
-      border-radius: 5px;
-      border: 1px solid #fff;
-      cursor: pointer;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 }
@@ -467,6 +466,7 @@ footer {
 
     .modal-window {
       margin-top: 2rem;
+      min-width: 90%;
     }
   }
 
