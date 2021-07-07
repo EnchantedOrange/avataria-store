@@ -24,17 +24,16 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color:#108f69;
+  background-color: #108f69;
   font-size: 1.3rem;
   font-weight: bold;
   cursor: pointer;
   height: 100%;
   border-radius: 4px;
-  border: 0;
   color: inherit;
   padding: 1rem 3rem;
   border: 2px solid #0b7556;
-  transition: filter .1s;
+  transition: filter 0.1s;
 
   &:hover {
     filter: contrast(200%);
@@ -47,7 +46,7 @@ body {
   align-items: center;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   display: none;
@@ -73,18 +72,18 @@ body {
       max-width: 30rem;
       margin: 0 auto;
 
-      & > *:not([type="hidden"]) {
+      & > *:not([type='hidden']) {
         display: block;
-        margin: .5rem 0;
+        margin: 0.5rem 0;
         max-width: 100%;
         width: 100%;
       }
 
-      input[type="text"] {
+      input[type='text'] {
         text-align: center;
         border: 0;
         border-radius: 4px;
-        padding: .5rem 1rem;
+        padding: 0.5rem 1rem;
         font-size: 1rem;
         outline: none;
       }
@@ -93,19 +92,18 @@ body {
         width: 100%;
         border: 2px solid #0a53a7;
         border-radius: 4px;
-        padding: .3rem 1rem;
+        padding: 0.3rem 1rem;
         box-sizing: border-box;
         cursor: pointer;
       }
 
-      input[type="submit"] {
+      input[type='submit'] {
         padding: 1rem 3rem;
       }
     }
   }
 
   &#info-modal {
-
     h1 {
       font-size: 1.3rem;
       text-align: center;
@@ -132,8 +130,8 @@ header {
 
   width: 100%;
   height: var(--header-height);
-  background-color:#0d85bd;
-  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, .5);
+  background-color: #0d85bd;
+  box-shadow: 0 3px 10px -2px rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -164,8 +162,8 @@ header {
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    background-color: rgba(48, 134, 11, .7);
-    transition: background .1s;
+    background-color: rgba(48, 134, 11, 0.7);
+    transition: background 0.1s;
     padding: 0 2rem;
     height: 100%;
     border-radius: 4px;
@@ -173,16 +171,16 @@ header {
     cursor: pointer;
 
     b {
-      transition: all .1s;
+      transition: all 0.1s;
     }
 
     p {
-      font-size: .8rem;
-      transition: all .1s;
+      font-size: 0.8rem;
+      transition: all 0.1s;
     }
 
     &:hover {
-      background-color: rgba(61, 168, 14, .7);
+      background-color: rgba(61, 168, 14, 0.7);
 
       b {
         opacity: 0;
@@ -243,20 +241,20 @@ header {
     }
 
     &.green {
-      border: 1px solid rgba(75, 236, 88, .7);
-      background-color: rgba(75, 236, 88, .5);
+      border: 1px solid rgba(75, 236, 88, 0.7);
+      background-color: rgba(75, 236, 88, 0.5);
       color: darken(rgb(75, 236, 88), 25);
     }
 
     &.yellow {
-      border: 1px solid rgba(212, 236, 75, .7);
-      background-color: rgba(212, 236, 75, .5);
+      border: 1px solid rgba(212, 236, 75, 0.7);
+      background-color: rgba(212, 236, 75, 0.5);
       color: darken(rgb(212, 236, 75), 25);
     }
 
     &.red {
-      border: 1px solid rgba(236, 86, 75, .7);
-      background-color: rgba(236, 86, 75, .5);
+      border: 1px solid rgba(236, 86, 75, 0.7);
+      background-color: rgba(236, 86, 75, 0.5);
       color: darken(rgb(236, 86, 75), 25);
     }
   }
@@ -274,7 +272,7 @@ main {
   .card {
     background-color: #1e8ec2;
     border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     margin-bottom: 2rem;
 
     &:last-child {
@@ -290,14 +288,14 @@ main {
       padding: 10px 5px;
       background-color: #166f99;
       border-radius: 4px 4px 0 0;
-      box-shadow: 0 2px 12px -5px rgba(0, 0, 0, .5);
+      box-shadow: 0 2px 12px -5px rgba(0, 0, 0, 0.5);
 
       b {
         padding-right: 5px;
       }
 
       p {
-        font-size: .8rem;
+        font-size: 0.8rem;
         padding-left: 5px;
       }
     }
@@ -320,11 +318,11 @@ main {
           user-select: none;
           list-style: none;
           box-sizing: border-box;
-          background-color: rgba(255, 255, 255, .6);
+          background-color: rgba(255, 255, 255, 0.6);
 
           &.inactive {
             filter: grayscale(1);
-            opacity: .6;
+            opacity: 0.6;
           }
 
           img {
@@ -345,8 +343,8 @@ main {
             top: 0;
             right: 0;
             padding: 2px 4px;
-            font-size: .8rem;
-            background-color: rgba(2, 162, 58, .8);
+            font-size: 0.8rem;
+            background-color: rgba(2, 162, 58, 0.8);
             text-align: center;
             width: 50%;
           }
@@ -377,7 +375,6 @@ main {
             }
           }
 
-  
           .quantity {
             background-color: #15a1e2;
             padding: 2px 4px;
@@ -387,7 +384,6 @@ main {
           }
         }
       }
-
 
       & > p {
         display: none;
@@ -425,7 +421,7 @@ main {
 
       &.inactive {
         cursor: default;
-        opacity: .6;
+        opacity: 0.6;
         filter: grayscale(1);
       }
     }
@@ -471,9 +467,9 @@ footer {
   }
 
   header .balance {
-    font-size: .9rem;
-    padding: 0 .5rem;
-    margin-left: .5rem;
+    font-size: 0.9rem;
+    padding: 0 0.5rem;
+    margin-left: 0.5rem;
   }
 
   #notification-container .notification {
